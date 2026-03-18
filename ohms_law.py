@@ -1,7 +1,9 @@
 # Author: Steve Hauswirth
 # Date: 2025-10-12
-# Last Modified: 2025-10-16
+# Last Modified: 2026-03-18
 # Description: Ohm's Law Calculator using match-case structure in Python.
+
+import math as m
 
 # Main menu for user to select which variable to calculate.
 menu = ''' [1] Current
@@ -36,27 +38,51 @@ def format_and_print_si_units(value, unit):
 # Use match-case to determine which variable to calculate based on user input.
 match choice:
     case 1:
-        voltage = float(input("Enter Voltage (V): "))
-        resistance = float(input("Enter Resistance (R): "))
-        current = voltage / resistance
+        voltage = input("Enter Voltage (V) if known, or press Enter to skip: ")
+        resistance = input("Enter Resistance (R) if known, or press Enter to skip: ")
+        power = input("Enter Power (P)if known, or press Enter to skip: ")
+        if not power:
+            current = float(voltage) / float(resistance)
+        elif not voltage:
+            current = m.sqrt(float(power) / float(resistance))
+        else:
+            current = float(power) / float(voltage)
         format_and_print_si_units(current, "A")
         
-    case 2:
-        current = float(input("Enter Current (I): "))
-        resistance = float(input("Enter Resistance (R): "))
-        voltage = current * resistance
+    case 2: 
+        current = input("Enter Current (I) if known, or press Enter to skip: ")
+        resistance = input("Enter Resistance (R) if known, or press Enter to skip: ")
+        power = input("Enter Power (P) if known, or press Enter to skip: ")
+        if not power:
+            voltage = float(current) * float(resistance)
+        elif not current:
+            voltage = m.sqrt(float(power) * float(resistance))
+        else:
+            voltage = float(power) / float(current)
         format_and_print_si_units(voltage, "V")
             
     case 3:
-        voltage = float(input("Enter Voltage (V): "))
-        current = float(input("Enter Current (I): "))
-        resistance = voltage / current
+        voltage = input("Enter Voltage (V) if known, or press Enter to skip: ")
+        current = input("Enter Current (I) if known, or press Enter to skip: ")
+        power = input("Enter Power (P) if known, or press Enter to skip: ")
+        if not power:
+            resistance = float(voltage) / float(current)
+        elif not voltage:
+            resistance = float(power) / (float(current) ** 2)
+        else:
+            resistance = float(voltage) ** 2 / float(power)
         format_and_print_si_units(resistance, "Ω")
       
     case 4:
-        voltage = float(input("Enter Voltage (V): "))
-        current = float(input("Enter Current (I): "))
-        power = voltage * current
+        resistance = input("Enter Resistance (R) if known, or press Enter to skip: ")
+        voltage = input("Enter Voltage (V) if known, or press Enter to skip: ")
+        current = input("Enter Current (I) if known, or press Enter to skip: ")
+        if not voltage:
+            power = float(resistance) * (float(current) ** 2)
+        elif not current:
+            power = float(voltage) ** 2 / float(resistance)
+        else:
+            power = float(current) * float(voltage)
         format_and_print_si_units(power, "W")
     
     case _:
