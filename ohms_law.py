@@ -40,7 +40,7 @@ match choice:
     case 1:
         voltage = input("Enter Voltage (V) if known, or press Enter to skip: ")
         resistance = input("Enter Resistance (R) if known, or press Enter to skip: ")
-        power = input("Enter Power (P)if known, or press Enter to skip: ")
+        power = input("Enter Power (P) if known, or press Enter to skip: ")
         if not power:
             current = float(voltage) / float(resistance)
         elif not voltage:
