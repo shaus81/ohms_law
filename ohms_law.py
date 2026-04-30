@@ -22,25 +22,30 @@ choice = int(input("Choose a variable to calculate: "))
 def format_and_print_si_units(value, unit):
     if 1 > value >= 0.001:
         value *= 1_000
-        print(f"{unit} = {value:.3f} m{unit}")
+        print()
+        print(f"{value:.3f} m{unit}")
     elif 0.001 > value >= 0.000_001:
         value *= 1_000_000
-        print(f"{unit} = {value:.3f} µ{unit}")
+        print()
+        print(f"{value:.3f} µ{unit}")
     elif 0.000_001 > value >= 0.000_000_001:
         value *= 1_000_000_000
-        print(f"{unit} = {value:.3f} n{unit}")
+        print()
+        print(f"{value:.3f} n{unit}")
     elif 0.000_000_001 > value >=0.000_000_000_001:
         value *= 1_000_000_000_000
-        print(f"{unit} = {value:.3f} p{unit}")
+        print()
+        print(f"{value:.3f} p{unit}")
     else:
-        print(f"{unit} = {value:.3f} {unit}")
+        print()
+        print(f"{value:.3f} {unit}")
 
 # Use match-case to determine which variable to calculate based on user input.
 match choice:
     case 1:
-        voltage = input("Enter Voltage (V) if known, or press Enter to skip: ")
-        resistance = input("Enter Resistance (R) if known, or press Enter to skip: ")
-        power = input("Enter Power (P) if known, or press Enter to skip: ")
+        voltage = input("Enter Voltage (in Volts) if known, or press Enter to skip: ")
+        resistance = input("Enter Resistance (in Ohms) if known, or press Enter to skip: ")
+        power = input("Enter Power (in Watts) if known, or press Enter to skip: ")
         if not power:
             current = float(voltage) / float(resistance)
         elif not voltage:
@@ -50,9 +55,9 @@ match choice:
         format_and_print_si_units(current, "A")
         
     case 2: 
-        current = input("Enter Current (I) if known, or press Enter to skip: ")
-        resistance = input("Enter Resistance (R) if known, or press Enter to skip: ")
-        power = input("Enter Power (P) if known, or press Enter to skip: ")
+        current = input("Enter Current (in Amperes) if known, or press Enter to skip: ")
+        resistance = input("Enter Resistance (in Ohms) if known, or press Enter to skip: ")
+        power = input("Enter Power (in Watts) if known, or press Enter to skip: ")
         if not power:
             voltage = float(current) * float(resistance)
         elif not current:
@@ -62,9 +67,9 @@ match choice:
         format_and_print_si_units(voltage, "V")
             
     case 3:
-        voltage = input("Enter Voltage (V) if known, or press Enter to skip: ")
-        current = input("Enter Current (I) if known, or press Enter to skip: ")
-        power = input("Enter Power (P) if known, or press Enter to skip: ")
+        voltage = input("Enter Voltage (in Volts) if known, or press Enter to skip: ")
+        current = input("Enter Current (in Amperes) if known, or press Enter to skip: ")
+        power = input("Enter Power (in Watts) if known, or press Enter to skip: ")
         if not power:
             resistance = float(voltage) / float(current)
         elif not voltage:
@@ -74,9 +79,9 @@ match choice:
         format_and_print_si_units(resistance, "Ω")
       
     case 4:
-        resistance = input("Enter Resistance (R) if known, or press Enter to skip: ")
-        voltage = input("Enter Voltage (V) if known, or press Enter to skip: ")
-        current = input("Enter Current (I) if known, or press Enter to skip: ")
+        resistance = input("Enter Resistance (in Ohms) if known, or press Enter to skip: ")
+        voltage = input("Enter Voltage (in Volts) if known, or press Enter to skip: ")
+        current = input("Enter Current (in Amperes) if known, or press Enter to skip: ")
         if not voltage:
             power = float(resistance) * (float(current) ** 2)
         elif not current:
