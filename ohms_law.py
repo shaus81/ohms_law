@@ -1,6 +1,6 @@
 # Author: Steve Hauswirth
 # Date: 2025-10-12
-# Last Modified: 2026-03-18
+# Last Modified: 2026-04-30
 # Description: Ohm's Law Calculator using match-case structure in Python.
 
 import math as m
@@ -21,16 +21,16 @@ choice = int(input("Choose a variable to calculate: "))
 # Function to format and print values in appropriate whole number SI units.
 def format_and_print_si_units(value, unit):
     if 1 > value >= 0.001:
-        value = value * 1_000
+        value *= 1_000
         print(f"{unit} = {value:.3f} m{unit}")
     elif 0.001 > value >= 0.000_001:
-        value = value * 1_000_000
+        value *= 1_000_000
         print(f"{unit} = {value:.3f} µ{unit}")
     elif 0.000_001 > value >= 0.000_000_001:
-        value = value * 1_000_000_000
+        value *= 1_000_000_000
         print(f"{unit} = {value:.3f} n{unit}")
     elif 0.000_000_001 > value >=0.000_000_000_001:
-        value = value * 1_000_000_000_000
+        value *= 1_000_000_000_000
         print(f"{unit} = {value:.3f} p{unit}")
     else:
         print(f"{unit} = {value:.3f} {unit}")
